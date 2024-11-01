@@ -1,2 +1,3 @@
 best_model.pth
 segm_model.onnx
+segm_model_best.onnx

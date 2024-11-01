@@ -9,7 +9,7 @@ set_seed()
 
 
 @click.command()
-@click.option("--n_epoch", default=2)
+@click.option("--n_epoch", default=50)
 @click.option("--batch_size", default=2)
 def train(n_epoch, batch_size):
 

@@ -6,7 +6,7 @@ from .dataset import get_dataloaders
 
 def dice_channels(
     prob: torch.Tensor, truth: torch.Tensor,
-    threshold: float = 0.5, eps: float = 1e-9
+    threshold: float = 0.5, eps: float = 1e-8
 ) -> torch.Tensor:
     """_summary_
 
@@ -16,7 +16,7 @@ def dice_channels(
         threshold (float, optional): Threshold to binarize `prob`.
             Defaults to 0.5.
         eps (float, optional): Small value to prevent division by zero.
-            Defaults to 1E-9.
+            Defaults to 1E-8.
 
     Returns:
         torch.Tensor: Mean Dice coefficient for each channel (C,).

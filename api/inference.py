@@ -6,7 +6,8 @@ import onnxruntime
 from copy import deepcopy
 
 ort_session = onnxruntime.InferenceSession(
-    "models/segm_model.onnx", providers=["CPUExecutionProvider"]
+    "models/segm_model.onnx", 
+    providers=["CPUExecutionProvider"]
 )
 
 TRANSFORMS = A.Compose([

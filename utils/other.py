@@ -3,7 +3,7 @@ import numpy as np
 import os
 import torch
 
-SEED = 60
+SEED = 42
 
 
 def set_seed():

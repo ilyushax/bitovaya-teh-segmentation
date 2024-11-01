@@ -2,13 +2,29 @@ import torch
 from torch import nn, einsum
 from torch.nn.modules.loss import BCEWithLogitsLoss
 
+"""
+The `dice_round` function computes the Dice loss based on a thresholding approach, 
+while `soft_dice_loss` calculates the soft Dice loss,
+which quantifies the overlap between predicted and true segmentation masks. 
+ 
+The `jaccard` function computes the Jaccard index,
+an alternative metric for measuring similarity,
+with options for handling non-empty images.
+  
+"""
 
-def dice_round(preds, trues, t=0.5):
+
+def dice_round(preds: torch.Tensor, trues: torch.Tensor, t=0.5) -> torch.Tensor:
     preds = (preds > t).float()
     return 1 - soft_dice_loss(preds, trues, reduce=False)
 
 
-def soft_dice_loss(outputs, targets, per_image=False, reduce=True):
+def soft_dice_loss(
+    outputs: torch.Tensor,
+    targets: torch.Tensor,
+    per_image: bool=False,
+    reduce: bool=True
+) -> torch.Tensor:
     batch_size = outputs.size()[0]
     eps = 1e-5
     if not per_image:
@@ -24,7 +40,13 @@ def soft_dice_loss(outputs, targets, per_image=False, reduce=True):
     return loss
 
 
-def jaccard(outputs, targets, per_image=False, non_empty=False, min_pixels=5):
+def jaccard(
+    outputs: torch.Tensor,
+    targets: torch.Tensor, 
+    per_image: bool =False, 
+    non_empty: bool = False, 
+    min_pixels: int = 5
+) -> torch.Tensor:
     batch_size = outputs.size()[0]
     eps = 1e-3
     if not per_image:

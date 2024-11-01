@@ -36,7 +36,6 @@ docs/_build/
 *.rdb
 .idea
 .vscode/
-.DS_Store
 *.swp
 *.swo
 .mypy_cache/

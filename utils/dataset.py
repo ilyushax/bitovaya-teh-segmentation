@@ -32,7 +32,10 @@ class SegmentationDataset(Dataset):
         return len(self.img_paths)
 
 
-def get_dataloaders(batch_size: int = 1, base_dir=""):
+def get_dataloaders(
+    batch_size: int = 1, 
+    base_dir: str = ""
+) -> DataLoader:
     train_transforms, test_transforms = get_transforms()
 
     train_dataset = SegmentationDataset(
